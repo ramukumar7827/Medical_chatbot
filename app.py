@@ -31,14 +31,22 @@ llm=HuggingFaceEndpoint(
     repo_id='mistralai/Mistral-7B-Instruct-v0.2',
     task='text-generation'
 )
-model=ChatHuggingFace(llm=llm)
-prompt=PromptTemplate.from_template(
-    f"""
-{system_prompt}
+prompt = PromptTemplate(
+    template="""
+You are a medical assistant for question-answering tasks.
+Use the following pieces of retrieved context to answer the question.
+If you don't know the answer, say that you don't know.
+Use three sentences maximum and keep the answer concise.
+
+Context:
+{context}
 
 User: {input}
 Assistant:
-""")
+""",
+    input_variables=["context", "input"]
+)
+model=ChatHuggingFace(llm=llm)
 
 
 parser=StrOutputParser()
