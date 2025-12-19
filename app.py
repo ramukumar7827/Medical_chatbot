@@ -29,8 +29,7 @@ retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k":
 
 llm=HuggingFaceEndpoint(
     repo_id='mistralai/Mistral-7B-Instruct-v0.2',
-    task='chat-completion',
-    base_url="https://router.huggingface.co"
+    task='chat-completion'
 )
 model=ChatHuggingFace(llm=llm)
 prompt = ChatPromptTemplate.from_messages(
