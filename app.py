@@ -28,7 +28,7 @@ docsearch = PineconeVectorStore.from_existing_index(
 retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k":3})
 
 llm=HuggingFaceEndpoint(
-    repo_id='deepseek-ai/DeepSeek-V3.2',
+    repo_id='mistralai/Mistral-7B-Instruct-v0.2',
     task='chat-completion',
     base_url="https://router.huggingface.co"
 )
