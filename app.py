@@ -3,7 +3,7 @@ from src.helper import download_hugging_face_embeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 from langchain_core.runnables import RunnableLambda
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from src.prompt import *
@@ -32,12 +32,14 @@ llm=HuggingFaceEndpoint(
     task='text-generation'
 )
 model=ChatHuggingFace(llm=llm)
-prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", system_prompt),
-        ("human", "{input}"),
-    ]
-)
+prompt=PromptTemplate.from_template(
+    f"""
+{system_prompt}
+
+User: {input}
+Assistant:
+""")
+
 
 parser=StrOutputParser()
 def format_docs(docs):
