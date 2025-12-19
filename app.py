@@ -3,7 +3,6 @@ from src.helper import download_hugging_face_embeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain_huggingface import ChatHuggingFace,HuggingFaceEndpoint
 from langchain_core.runnables import RunnableLambda
-from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
