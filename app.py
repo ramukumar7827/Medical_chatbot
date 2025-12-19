@@ -29,7 +29,8 @@ retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k":
 
 llm=HuggingFaceEndpoint(
     repo_id='deepseek-ai/DeepSeek-V3.2',
-    task='text-generation'
+    task='text-generation',
+    base_url="https://router.huggingface.co"
 )
 model=ChatHuggingFace(llm=llm)
 prompt = ChatPromptTemplate.from_messages(
