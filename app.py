@@ -8,12 +8,16 @@ from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from src.prompt import *
 import os
-
+load_dotenv()
 
 app = Flask(__name__)
+PINECONE_API_KEY=os.environ.get('PINECONE_API_KEY')
+HUGGINGFACEHUB_API_TOKEN=os.environ.get('HUGGINGFACEHUB_API_TOKEN')
+
+os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = HUGGINGFACEHUB_API_TOKEN
 
 
-load_dotenv()
 embeddings = download_hugging_face_embeddings()
 
 index_name = "medical-chatbot" 
@@ -27,10 +31,12 @@ docsearch = PineconeVectorStore.from_existing_index(
 
 retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k":3})
 
-llm=HuggingFaceEndpoint(
-    repo_id='mistralai/Mistral-7B-Instruct-v0.2',
-    task='text-generation'
+llm = HuggingFaceEndpoint(
+    repo_id="mistralai/Mistral-7B-Instruct-v0.2",
+    task="text-generation",
+    huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
 )
+
 prompt = PromptTemplate(
     template="""
 You are a medical assistant for question-answering tasks.

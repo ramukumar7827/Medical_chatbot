@@ -3,6 +3,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from typing import List
 from langchain_core.documents import Document
+import os
 
 def load_pdf_file(data):
     loader= DirectoryLoader(data,
