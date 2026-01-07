@@ -1,4 +1,4 @@
-# 🏥 Medical Chatbot using RAG and LLMs
+# Medical Chatbot using RAG and LLMs
 
 An AI-powered medical chatbot that answers health-related queries using **Retrieval-Augmented Generation (RAG)** and **Large Language Models (LLMs)**. The system retrieves relevant medical documents and generates accurate, context-aware responses in real time.
 <img width="1008" height="869" alt="image" src="https://github.com/user-attachments/assets/3d8e12c8-d275-4354-8710-ac411587f8f5" />
